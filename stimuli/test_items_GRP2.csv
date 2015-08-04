@@ -1,0 +1,11 @@
+### Test items ###
+id;type;segments;question;qanswer
+1;FILLER;"Nam/laoreet/dapibus/justo,/ac/lobortis/enim/
+rhoncus/in.";Aliquam et massa ut diam venenatis facilisis?;false
+2;FILLER;Curabitur/vel/nulla/laoreet/nibh/volutpat.;Donec iaculis blandit mi, et faucibus purus lobortis a?;true
+3;CORRECT;"In/mi/ut/#ipsum/#pellentesque/#dapibus/sed/ut/lorem.";Duis quis tellus velit, vel hendrerit dolor?;false
+4;CORRECT;"Proin/ac/arcu/in/arcu/#porta/#vestibulum/#quis/ac/
+dolor.";Morbi id lectus in justo sagittis interdum nec eget dolor?;true
+5;GRERROR;"#Cras/#vestibulum/#sapien/#sit/#amet/#lectus/#malesuada/#
+fermentum/#interdum/#quam.";Feugiat dignissim urna, id tempor turpis vulputate nec?;false
+6;GRERROR;"#Integer/#ut/#arcu/#lacus,/#luctus/#tempor/#erat.";Proin mollis elit eget justo tincidunt ultrices ornare ut ligula?;true

@@ -33,6 +33,7 @@ import std_entry_page1;
 import std_exit_page1;
 import std_pause_page;
 import std_blank_page;
+import grouping;
 
 import test::task;
 
