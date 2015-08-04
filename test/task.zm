@@ -58,28 +58,7 @@ Block task
         on_event:entry()
         {
 //            pause_page.set_text_size(1000, 600);
-            pause_page.set_text(
-                "<b>Dear participant,</b>\n"
-                "\n"
-                "Thank you for participating in this experiment.\n"
-                "\n"
-                "You are now going to see sentences on the screen, one after "
-                "the other. Each sentence is broken up into words. You can "
-                "reveal the sentence word-by-word by repeatedly hitting "
-                "the spacebar. "
-//                "the button in front of you. "
-                "This way you walk through each sentence. Your task is to "
-                "<i>silently</i> read each sentence as quickly as possible.\n"
-                "\n"
-                "Sometimes a statement about a sentence comes up. You then "
-                "have to indicate whether the statement is correct or not. "
-                "Therefore it is important that you really <i>read</i> each "
-                "sentence.\n"
-                "\n"
-                "First we will do a short practice.\n"
-                "\n"
-                "<i>Hit Enter when ready to start.</i>", 
-//                "<i>Hit any button on the button-box when ready to start.</i>", 
+            pause_page.set_text(INSTRUCTION_TEXT,
                 true);
 
             pause_page.action(this);
@@ -164,14 +143,7 @@ Block task
         on_event:entry()
         {
             pause_page.set_text(
-                "End of the practice part.\n"
-                "\n"
-                "If you have any questions at this moment please ask the "
-                "experimenter now.\n"
-                "\n"
-                "<i>Hit Enter when ready to proceed.</i>", 
-//                "<i>Hit any button on the button-box when ready to "
-//                "proceed.</i>", 
+              END_OF_PRACTICE_TEXT,
                 true);
 
             pause_page.action(this);
