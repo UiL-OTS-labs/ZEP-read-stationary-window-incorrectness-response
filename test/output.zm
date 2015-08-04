@@ -21,19 +21,11 @@ record TestOutput
 
     int         id;             // item id
     ItemType    type;           // item type
-    string      question;       // true/false statement about stimulus (partial)
 
-    int         qcorrect;       // correct answer to quest: 0=no, 1=yes, -1=n.a.
-    int         rt1;            // reading time for starred segment 1 [ms]
-    int         rt2;            // reading time for starred segment 2 [ms]
-    int         rt3;            // reading time for starred segment 3 [ms]
-    int         rt4;            // reading time for starred segment 4 [ms]
-    int         rt5;            // reading time for starred segment 5 [ms]
-    int         rt6;            // reading time for starred segment 6 [ms]
-    int         rt7;            // reading time for starred segment 7 [ms]
-    int         rt8;            // reading time for starred segment 8 [ms]
-    int         rt9;            // reading time for starred segment 9 [ms]
-    int         rt10;           // reading time for starred segment 10 [ms]
+    int         qanswer;       // correct answer to quest: 0=no, 1=yes, -1=n.a
+    int         qcorrect;       // correctness of answer to quest: 0=no, 1=yes, -1=n.a.
+
+    int         rt;            // reaction time for starred segment 1 [ms]
 }
 
 

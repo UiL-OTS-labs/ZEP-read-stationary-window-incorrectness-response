@@ -33,7 +33,6 @@ record TestItem
     int         id;             // item id
     ItemType    type;           // item type
     string      segments;       // segments separated by slashes
-    string      question;       // true/false statement about stimulus [opt]
     bool        qanswer;        // correct answer to question (true/false)
 }
 

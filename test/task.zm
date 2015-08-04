@@ -103,23 +103,11 @@ Block task
                 }
             }
 
-
-            TransientPart
-            {
-                on_event:entry()
-                {
-                    // Check if we need to ask a comprehension question.
-                    if (length(item.question) == 0)
-                        trial.leave();  // No question. Trial done.
-                }
-            }
-
-
             SubTrial question
             {
                 on_event:entry()
                 {
-                    choose_1of2_page.set_text(item.question);
+                    choose_1of2_page.set_text(" ? ");
                     choose_1of2_page.set_label_texts(" Yes ", " No ");
                     choose_1of2_page.set_keys(KEY_Shift_L, KEY_Shift_R);
                     choose_1of2_page.action(this, item.qanswer ? 1 : 2);
@@ -189,7 +177,6 @@ Block task
                 output.trialnum = test.cycle + 1;
                 output.id = item.id;
                 output.type = item.type;
-                output.question = substring(item.question, 0, 30);
                 output.qcorrect = -1;
             }
 
@@ -211,37 +198,15 @@ Block task
 
                 on_event:exit()
                 {
-                    output.rt1 = test_page.response.rt[1];
-                    output.rt2 = test_page.response.rt[2];
-                    output.rt3 = test_page.response.rt[3];
-                    output.rt4 = test_page.response.rt[4];
-                    output.rt5 = test_page.response.rt[5];
-                    output.rt6 = test_page.response.rt[6];
-                    output.rt7 = test_page.response.rt[7];
-                    output.rt8 = test_page.response.rt[8];
-                    output.rt9 = test_page.response.rt[9];
-                    output.rt10 = test_page.response.rt[10];
+                    output.rt = test_page.response.rt[1];
                 }
             }
-
-
-            TransientPart
-            {
-                on_event:entry()
-                {
-                    // Check if we need to ask a comprehension question.
-                    if (random(100) >= STATEMENT_CHANCE || 
-                            length(item.question) == 0)
-                        trial.leave();  // No question. Trial done.
-                }
-            }
-
 
             SubTrial question
             {
                 on_event:entry()
                 {
-                    choose_1of2_page.set_text(item.question);
+                    choose_1of2_page.set_text("?");
                     choose_1of2_page.set_label_texts(" Yes ", " No ");
                     choose_1of2_page.set_keys(KEY_Shift_L, KEY_Shift_R);
                     choose_1of2_page.action(this, item.qanswer ? 1 : 2);
