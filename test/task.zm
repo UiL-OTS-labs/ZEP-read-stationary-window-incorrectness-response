@@ -33,14 +33,12 @@ HISTORY:
 
 //requires 1.10;
 
-import std_choose_1of2_page;
-
 import defs;
 import stimuli;
 import shuffle;
 import output;
 import test_page;
-
+import choose_1of2_page;
 
 Block task
 {
@@ -107,8 +105,6 @@ Block task
             {
                 on_event:entry()
                 {
-                    choose_1of2_page.set_text(" ? ");
-                    choose_1of2_page.set_label_texts(" Yes ", " No ");
                     choose_1of2_page.set_keys(KEY_Shift_L, KEY_Shift_R);
                     choose_1of2_page.action(this, item.qanswer ? 1 : 2);
                 }
@@ -208,8 +204,6 @@ Block task
             {
                 on_event:entry()
                 {
-                    choose_1of2_page.set_text("?");
-                    choose_1of2_page.set_label_texts(" Yes ", " No ");
                     choose_1of2_page.set_keys(KEY_Shift_L, KEY_Shift_R);
                     choose_1of2_page.action(this, item.qanswer ? 1 : 2);
                 }

@@ -61,3 +61,8 @@ const string    END_OF_PRACTICE_TEXT =
                 "experimenter now.\n"
                 "\n"
                 "<i>Hit Enter when ready to proceed.</i>";
+
+//" \u2714 ";      // check mark symbol (V-like)
+// " \u2718 ";      // ballot symbol (cross)
+
+const string QUESTION_TEXT = "  \u2714   ?   \u2718 ";

@@ -154,13 +154,24 @@ Page test_page
                 // False alarm. Deal with this if desired.
             }
         }
+    }
 
-        on_event:finish()
+
+    Timer done_delay
+    {
+        int msgid;
+
+        on_event:expire()
         {
-            done(CONTINUE);
+            done(msgid);
         }
     }
 
+    void done(int msgid, time tref)
+    {
+        done_delay.msgid = msgid;
+        done_delay.start(tref);
+    }
 
     // Aborts any ongoing activity on this page and signals the initiator
     // of the trial that we're done.
@@ -241,6 +252,8 @@ Page test_page
                 {
                     response.ignore_remaining_hits();
                     response.stop(event_time+POST_SENTENCE_TIME);
+                    
+                    done(CONTINUE,event_time+POST_SENTENCE_TIME);
                 }
         }
 
@@ -253,9 +266,8 @@ Page test_page
         {
             return character(segment, 0) == '#';
         }
-
-
     }
+
 
     // Starts a trial.
     void action(Object caller, TestItem it, time tref, int count=-1)
