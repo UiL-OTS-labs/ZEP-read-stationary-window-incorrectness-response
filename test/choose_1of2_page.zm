@@ -41,6 +41,11 @@ Page choose_1of2_page
             handle_special_key(this, input_key, input_modifiers);
     }
 
+    on_event:message()
+    {
+        // Process button-box message. See setup() below.
+        response.process_hit(message_arg, event_time);
+    }
 
     VerticalLayout layout
     {
@@ -143,11 +148,37 @@ Page choose_1of2_page
         }
     }
 
+     void setup(int count = -1, int ntrials=-1, bool pr=false)
+    {
+        test_page_overlay.setup(this);
+
+        // Show or hide prompt.
+        test_page_overlay.show_prompt(pr ? 
+            PRACTICE_OVERLAY_PROMT_TEXT2 : "");
+
+        // Enable or disable the progress bar.
+        test_page_overlay.show_progress_bar(ntrials);   // disabled if < 0
+
+        // Update progress counter (if enabled).
+        test_page_overlay.update_progress_bar(count);
+
+        // Enable button-box buttons.
+        control.target = this;
+        control.button_box.disable_buttons();
+        control.button_box.enable_button(0,1);
+        control.button_box.enable_button(0,2);
+    }
 
     void done(int msgid)
     {
         signal_target(msgid);   // Tell caller we're done.
         target = null;
+
+        if(control.target == this)
+        {
+            control.target = null;
+            control.button_box.disable_buttons();
+        }
     }
 
 
@@ -173,19 +204,7 @@ Page choose_1of2_page
         response.clear();
         response.goodvalue = correct;
 
-        // Force page show delay and transition duration in sane range.
-        if (showdelay < 0s) showdelay = page_transition_delay;
-        else showdelay = limit(showdelay, 0s, MAX_PAGE_TRANSITION_DELAY);
-        if (fadedur < 0s) fadedur = PAGE_TRANSITION_DURATION;
-        else fadedur = limit(fadedur, 0s, MAX_PAGE_TRANSITION_DURATION);
-        
-    	// Clear page transition delay.
-    	page_transition_delay = 0s;
-
-    	// Clear first trial delay.
-	first_trial_delay = 0s;
-
-        if (test_window1.show_page(this, now() + showdelay, fadedur) == 0)
+        if (test_window1.show_page(this, now()) == 0)
         {
             // Page not yet shown. Let response period begin when the page 
             // is fully visible (fade-in has finished).

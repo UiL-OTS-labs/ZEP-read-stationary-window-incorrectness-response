@@ -68,3 +68,4 @@ const string    END_OF_PRACTICE_TEXT =
 const string QUESTION_TEXT = "  \u2714   ?   \u2718 ";
 
 const string PRACTICE_OVERLAY_PROMT_TEXT = "read sentence word by word";
+const string PRACTICE_OVERLAY_PROMT_TEXT2 = "was the sentence correct?";

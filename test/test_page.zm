@@ -191,7 +191,7 @@ Page test_page
 
 
     // Performs preparatory work required before using this page.
-    void setup(int ntrials=-1, bool pr=false)
+    void setup(int count=-1, int ntrials=-1, bool pr=false)
     {
         test_page_overlay.setup(this);
 
@@ -202,6 +202,9 @@ Page test_page
         // Enable or disable the progress bar.
         test_page_overlay.show_progress_bar(ntrials);   // disabled if < 0
 
+
+        // Update progress counter (if enabled).
+        test_page_overlay.update_progress_bar(count);
 
         // Enable button-box buttons.
         control.target = this;
@@ -270,7 +273,7 @@ Page test_page
 
 
     // Starts a trial.
-    void action(Object caller, TestItem it, time tref, int count=-1)
+    void action(Object caller, TestItem it, time tref)
     {
         // Save the passed trial control parameters.
         item = it;
@@ -295,11 +298,6 @@ Page test_page
         //response.start(fixonset);
         reader.setup();
         reader.start(fixonset+READING_TIME);
-
-
-        // Update progress counter (if enabled).
-        test_page_overlay.update_progress_bar(count);
-
 
         // Update status line on control window. Cleared in done() above.
         control.set_status(

@@ -48,7 +48,6 @@ Experiment experiment
         show_test_windows();
     }
 
-
     on_event:message()
     {
         // On Ctrl+F4 jump unconditionally to the thank-you part.

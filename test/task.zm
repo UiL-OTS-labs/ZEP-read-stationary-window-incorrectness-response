@@ -74,8 +74,8 @@ Block task
         {
             num_cycles = prac_items.size;
 
-            // Prepare test page: progress bar and prompt enabled.
-            test_page.setup(num_cycles, true);
+            
+            
         }
 
 
@@ -89,6 +89,9 @@ Block task
         {
             on_event:entry()
             {
+                // Prepare test page: progress bar and prompt enabled.
+                test_page.setup(practice.cycle, practice.num_cycles, true);
+
                 item = prac_items[practice.cycle];
             }
 
@@ -97,7 +100,7 @@ Block task
             {
                 on_event:entry()
                 {
-                    test_page.action(this, item, reference_time, practice.cycle);
+                    test_page.action(this, item, reference_time);
                 }
             }
 
@@ -105,6 +108,7 @@ Block task
             {
                 on_event:entry()
                 {
+                    choose_1of2_page.setup( practice.cycle, practice.num_cycles, false);
                     choose_1of2_page.set_keys(KEY_Shift_L, KEY_Shift_R);
                     choose_1of2_page.action(this, item.qanswer ? 1 : 2);
                 }
@@ -150,8 +154,7 @@ Block task
             num_cycles = test_items.size;
 //            num_cycles = 3;
 
-            // Prepare test page: progress bar enabled, prompt disabled.
-            test_page.setup(num_cycles, false);
+            
         }
 
 
@@ -168,6 +171,9 @@ Block task
         {
             on_event:entry()
             {
+                // Prepare test page: progress bar enabled, prompt disabled.
+                test_page.setup(test.cycle, test.num_cycles, false);
+
                 item = test_items[test.cycle];
 
                 output.trialnum = test.cycle + 1;
@@ -190,7 +196,7 @@ Block task
             {
                 on_event:entry()
                 {
-                    test_page.action(this, item, reference_time, test.cycle);
+                    test_page.action(this, item, reference_time);
                 }
 
 
@@ -204,6 +210,7 @@ Block task
             {
                 on_event:entry()
                 {
+                    choose_1of2_page.setup(test.num_cycles, test.num_cycles, false);
                     choose_1of2_page.set_keys(KEY_Shift_L, KEY_Shift_R);
                     choose_1of2_page.action(this, item.qanswer ? 1 : 2);
                 }
