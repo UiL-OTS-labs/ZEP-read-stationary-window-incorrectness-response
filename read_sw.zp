@@ -1,13 +1,14 @@
 /******************************************************************************\
 FILE:           read_sw.zp
 AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
+                        Chris van Run <C.P.A.vanrun@uu.nl>
 ADAPTED BY:     -
 
 DESCRIPTION:
 
 Implementation of task: Self-Paced Reading with Stationary Window
 
-For more information on the read_sw task see readme.txt in the 
+For more information on the read_sw task see readme.md in the 
 test folder.
 
 
@@ -21,7 +22,7 @@ Global structure of experiment:
 
 
 HISTORY:
-2013-07-03 TV   Created.
+2015-08-06 CvR   Created.
 
 \******************************************************************************/
 
@@ -49,7 +50,7 @@ Experiment experiment
 
         // If necessary set parallel port line D0 to power button box device.
         control.button_box.output(0x02);
-        
+
         show_test_windows();
     }
 

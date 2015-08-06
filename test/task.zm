@@ -1,36 +1,3 @@
-/******************************************************************************\
-FILE:           task.zm
-AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
-ADAPTED BY:     -
-
-DESCRIPTION:
-
-Implementation of task: Self-Paced Reading with Stationary Window
-See readme.txt for more information.
-
-
-Global structure of this experiment phase:
-
-  - instructions
-
-  - practice part
-      trial
-        stimulus presentation
-        question (conditional)
-
-  - pause
-
-  - test part
-      trial
-        stimulus presentation
-        question (conditional)
-
-
-HISTORY:
-2012-03-19 TV   Created.
-
-\******************************************************************************/
-
 //requires 1.10;
 
 import defs;

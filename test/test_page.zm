@@ -1,22 +1,3 @@
-/******************************************************************************\
-FILE:           test_page.zm
-AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
-ADAPTED BY:     -
-
-DESCRIPTION:
-
-Provides a page object to show to the participant during test trials.
-It handles presenting the stimulus and recording the participant's response.
-
-
-HISTORY:
-2012-03-19 TV   Created.
-2012-04-03 TV   Changed * symbol to # symbol. Otherwise you can't comment 
-                out parts in stimulus list.
-
-\******************************************************************************/
-
-
 Page test_page
 {
     TestItem    item;           // trial control parameters
@@ -43,6 +24,8 @@ Page test_page
     {
         // Process button-box message. See setup() below.
         response.process_hit(event_time);
+
+        layout.start_feedback();
     }
 
 
@@ -54,11 +37,14 @@ Page test_page
             height = 0;     // 0 means as large as possible
         }
 
-
         CanvasGadget canvas
         {
             init()
             {
+                border = 0;
+                border_style = BORDER_SOLID;
+                border_color = color:gray30;
+
                 fill_pattern_color = TEST_PAGE_STIMULUS_COLOR;
                 size = 400, 100;
                 offset_x = width / 2;
@@ -88,6 +74,19 @@ Page test_page
             }
         }
 
+        void start_feedback()
+        {
+            canvas.border = 2;
+            feedback_reset.start(now() + VISUAL_FEEDBACK_DURATION);
+        }
+
+        Timer feedback_reset
+        {
+            on_event:expire()
+            {
+                canvas.border = 0;
+            }
+        }
 
         time start_stimulus(time t)
         {

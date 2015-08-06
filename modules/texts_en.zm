@@ -1,20 +1,3 @@
-/******************************************************************************\
-FILE:           std_texts_en.zm
-AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
-ADAPTED BY:     -
-
-DESCRIPTION:
-
-Defines texts on buttons and other graphic elements.
-English version.
-
-
-HISTORY:
-2009-12-02 TV   Created as part of the standard Zep modules.
-
-\******************************************************************************/
-
-
 // Button texts.
 const string    CONTINUE_BUTTON_TEXT            = "Continue";
 const string    NEXT_BUTTON_TEXT                = "Next";
@@ -39,20 +22,18 @@ const string    INSTRUCTION_TEXT =
                 "Thank you for participating in this experiment.\n"
                 "\n"
                 "You are now going to see sentences on the screen, one after "
-                "the other. Each sentence is broken up into words. You can "
-                "reveal the sentence word-by-word by repeatedly hitting "
-                "the spacebar. "
+                "the other. Each sentence is broken up into words. Each word is shown automatically"
                 "This way you walk through each sentence. Your task is to "
-                "<i>silently</i> read each sentence as quickly as possible.\n"
+                "<i>silently</i> read each sentence and detect grammatical errors.\n"
+                "The moment you detect a grammatical error you are to press one of the buttons!\n"
                 "\n"
-                "Sometimes a statement about a sentence comes up. You then "
-                "have to indicate whether the statement is correct or not. "
+                "After the sentence has been completely shown you will be required to again indictate if you think the sentence was correct or incorrect."
                 "Therefore it is important that you really <i>read</i> each "
                 "sentence.\n"
                 "\n"
                 "First we will do a short practice.\n"
                 "\n"
-                "<i>Hit Enter when ready to start.</i>";
+                "<i>Hit a button when ready to start.</i>";
 
 const string    END_OF_PRACTICE_TEXT = 
                 "End of the practice part.\n"
@@ -60,7 +41,7 @@ const string    END_OF_PRACTICE_TEXT =
                 "If you have any questions at this moment please ask the "
                 "experimenter now.\n"
                 "\n"
-                "<i>Hit Enter when ready to proceed.</i>";
+                "<i>Hit a button when ready to proceed.</i>";
 
 //" \u2714 ";      // check mark symbol (V-like)
 // " \u2718 ";      // ballot symbol (cross)
