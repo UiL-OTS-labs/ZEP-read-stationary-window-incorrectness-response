@@ -25,3 +25,5 @@ const int       MAX_STARRED_SEGMENTS            = 1;
 
 const dur READING_TIME = 500ms;
 const dur POST_SENTENCE_TIME = 1s;
+
+const dur VISUAL_FEEDBACK_DURATION = 300ms;

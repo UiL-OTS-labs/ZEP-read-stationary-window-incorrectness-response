@@ -44,10 +44,8 @@ Block task
 {
     on_event:entry()
     {
-        control.button_box.open();
-
-        // If necessary set parallel port line D0 to power button box device.
-//        control.button_box.output(0x02);
+            // Randomize test items table.
+            if (shuffle_test_items() != OK) terminate;
     }
 
 
@@ -73,15 +71,13 @@ Block task
         on_event:entry()
         {
             num_cycles = prac_items.size;
-
-            
-            
         }
 
 
         on_event:exit()
         {
             test_page.cleanup();
+            choose_1of2_page.cleanup();
         }
 
 
@@ -116,7 +112,6 @@ Block task
         }
     }
 
-
     Part
     {
         on_event:entry()
@@ -148,19 +143,14 @@ Block task
 
         on_event:entry()
         {
-            // Randomize test items table.
-            if (shuffle_test_items() != OK) terminate;
-
             num_cycles = test_items.size;
-//            num_cycles = 3;
-
-            
         }
 
 
         on_event:exit()
         {
             test_page.cleanup();
+            choose_1of2_page.cleanup();
 
             // Save test output table as CSV file.
             test_output_save();
@@ -180,8 +170,9 @@ Block task
                 output.id = item.id;
                 output.rt = -9999;
                 output.type = item.type;
-                output.qanswer = item.qanswer;
+                output.q_expected_answer = item.qanswer;
                 output.qcorrect = -1;
+                output.num_responses = test_page.response.num_valid_hits;
             }
 
 
@@ -210,7 +201,7 @@ Block task
             {
                 on_event:entry()
                 {
-                    choose_1of2_page.setup(test.num_cycles, test.num_cycles, false);
+                    choose_1of2_page.setup(test.cycle, test.num_cycles, false);
                     choose_1of2_page.set_keys(KEY_Shift_L, KEY_Shift_R);
                     choose_1of2_page.action(this, item.qanswer ? 1 : 2);
                 }

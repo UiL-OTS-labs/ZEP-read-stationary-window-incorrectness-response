@@ -45,6 +45,11 @@ Experiment experiment
 {
     on_event:entry()
     {
+        control.button_box.open();
+
+        // If necessary set parallel port line D0 to power button box device.
+        control.button_box.output(0x02);
+        
         show_test_windows();
     }
 

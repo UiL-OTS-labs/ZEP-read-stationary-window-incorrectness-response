@@ -145,8 +145,8 @@ Page test_page
                     }
                     else
                     {
-                        print_error("Too many responses in trial segments "
-                            "string " + string(item.id) + "\n");
+                        print_error("More than the maximum " + MAX_STARRED_SEGMENTS + " responses in trial segments "
+                            "of item id " + string(item.id) + "\n");
                     }
             }
             else if (validity == HIT_TOO_EARLY || validity == HIT_TOO_LATE)

@@ -22,9 +22,11 @@ record TestOutput
     int         id;             // item id
     ItemType    type;           // item type
 
-    int         qanswer;       // correct answer to quest: 0=no, 1=yes, -1=n.a
+    int         q_expected_answer;       // correct answer to quest: 0=no, 1=yes, -1=n.a
     int         qcorrect;       // correctness of answer to quest: 0=no, 1=yes, -1=n.a.
 
+    int         num_responses;
+    
     int         rt;            // reaction time for starred segment 1 [ms]
 }
 

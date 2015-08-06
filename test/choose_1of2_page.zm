@@ -55,13 +55,32 @@ Page choose_1of2_page
             height = 0;     // 0 means as large as possible
         }
 
+        time start_feedback(int val)
+        {
+            if(val == 1)
+                canvas.leftcolor.height = canvas.leftcolor.height/2;
+            if(val == 2)
+                canvas.rightcolor.height = canvas.rightcolor.height/2;
+
+            feedback_reset.start(now() + VISUAL_FEEDBACK_DURATION);
+            return feedback_reset.expected_expire_time;
+        }
+
+        Timer feedback_reset
+        {
+            on_event:expire()
+            {
+                canvas.leftcolor.set();
+                canvas.rightcolor.set();
+            }
+        }
 
         CanvasGadget canvas
         {
             init()
             {
                 fill_pattern_color = TEST_PAGE_STIMULUS_COLOR;
-                size = 400, 100;
+                size = 420, 100;
                 offset_x = width / 2;
 //                offset_x = 40;
                 offset_y = height / 2;
@@ -82,9 +101,14 @@ Page choose_1of2_page
                 }
             }
 
-            RectangleShape
+            RectangleShape leftcolor
             {
                 init()
+                {
+                    set();
+                }
+
+                void set()
                 {
                     fill_pattern_color = color:green;
                     x = -canvas.width/2;
@@ -95,9 +119,14 @@ Page choose_1of2_page
                 }
             }
 
-            RectangleShape
+            RectangleShape rightcolor
             {
                 init()
+                {
+                    set();
+                }
+                
+                void set()
                 {
                     fill_pattern_color = color:red;
                     x = (canvas.width/2)-10;
@@ -137,7 +166,8 @@ Page choose_1of2_page
 
                 ignore_remaining_hits();
 
-                stop();
+                time feedback_finish_time = layout.start_feedback(val);
+                stop(feedback_finish_time);
             }
         }
 
@@ -146,6 +176,15 @@ Page choose_1of2_page
         {
             done(CONTINUE);
         }
+    }
+
+     // Performs cleaning up if necessary.
+    void cleanup()
+    {
+        test_page_overlay.cleanup();
+
+        control.button_box.disable_buttons();
+        control.target = null;
     }
 
      void setup(int count = -1, int ntrials=-1, bool pr=false)
@@ -166,7 +205,7 @@ Page choose_1of2_page
         control.target = this;
         control.button_box.disable_buttons();
         control.button_box.enable_button(0,1);
-        control.button_box.enable_button(0,2);
+        control.button_box.enable_button(1,2);
     }
 
     void done(int msgid)
