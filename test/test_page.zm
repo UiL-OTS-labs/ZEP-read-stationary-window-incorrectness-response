@@ -110,11 +110,6 @@ Page test_page
 
     Response response
     {
-        int     slength;        // segments string length
-        int     nsegments;      // number of segments in segments string
-        int     segnum;         // current segment number
-
-        bool    measure;        // set when presenting a starred segment
         int     measnum;        // current measurement number
 
         // Response data.
@@ -123,15 +118,6 @@ Page test_page
 
         void clear()
         {
-            // Determine length of segments string.
-            slength = length(item.segments);
-
-            // Count how many segment in segments string.
-            nsegments = count_keys(item.segments, "/") + 1;
-
-            segnum = 0;
-
-            measure = false;
             measnum = 1;
 
             // Initialize RT array (1 more for convenience, we won't use rt[0]).
@@ -144,7 +130,6 @@ Page test_page
             }
         }
 
-
         void process_hit(time t)
         {
             HitType validity = hit(t);
@@ -153,8 +138,6 @@ Page test_page
             // response interval and start next stimulus/response interval.
             if (validity == HIT_VALID)
             {
-                if (measure)
-                {
                     if (measnum <= MAX_STARRED_SEGMENTS)
                     {
                         rt[measnum] = int(reaction_time(0));
@@ -162,36 +145,15 @@ Page test_page
                     }
                     else
                     {
-                        print_error("Too many starred segments in segments "
+                        print_error("Too many responses in trial segments "
                             "string " + string(item.id) + "\n");
                     }
-                    
-                }
-
-                if (segnum == nsegments)
-                {
-                    ignore_remaining_hits();
-                    stop();
-                }
-                else
-                {
-                    segment = token(item.segments, "/", segnum);
-                    measure = character(segment, 0) == '#';
-                    if (measure) segment = substring(segment, 1, slength-1);
-                    segment = trim_whitespace(segment);
-                    segnum++;
-
-                    abort();
-                    time stimonset = layout.start_stimulus(t);
-                    start(stimonset);
-                }
             }
             else if (validity == HIT_TOO_EARLY || validity == HIT_TOO_LATE)
             {
                 // False alarm. Deal with this if desired.
             }
         }
-
 
         on_event:finish()
         {
@@ -246,6 +208,54 @@ Page test_page
         control.target = null;
     }
 
+    Timer reader {
+        int     slength;        // segments string length
+        int     nsegments;      // number of segments in segments string
+        int     segnum;         // current segment number
+
+        void setup() {
+            segnum = 0;
+            slength = length(item.segments);
+            nsegments = count_keys(item.segments, "/") + 1;
+        }
+
+        on_event:expire()
+        {
+             if (!at_end_of_sentence())
+                {
+                    segment = token(item.segments, "/", segnum);
+
+                    time stimonset = layout.start_stimulus(event_time);
+                    start(stimonset+READING_TIME);
+
+                    if (segment_requires_measurment())
+                    {
+                        segment = substring(segment, 1, slength-1);
+                        response.start(stimonset);
+                    }
+
+                    segment = trim_whitespace(segment);
+                    segnum++;
+                }
+                else
+                {
+                    response.ignore_remaining_hits();
+                    response.stop(event_time+POST_SENTENCE_TIME);
+                }
+        }
+
+        bool at_end_of_sentence()
+        {
+            return segnum == nsegments;
+        }
+
+        bool segment_requires_measurment()
+        {
+            return character(segment, 0) == '#';
+        }
+
+
+    }
 
     // Starts a trial.
     void action(Object caller, TestItem it, time tref, int count=-1)
@@ -270,7 +280,9 @@ Page test_page
 
 
         // Response interval starts at fixation symbol onset.
-        response.start(fixonset);
+        //response.start(fixonset);
+        reader.setup();
+        reader.start(fixonset+READING_TIME);
 
 
         // Update progress counter (if enabled).

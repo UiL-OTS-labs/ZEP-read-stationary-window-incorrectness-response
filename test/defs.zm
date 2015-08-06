@@ -22,3 +22,6 @@ const dur       INTERTRIAL_INTERVAL             = 1000ms;
 // definition of the TestOutput record (in output.zm) and make sure all 
 // record fields are assigned to (in read_mw.zm).
 const int       MAX_STARRED_SEGMENTS            = 1;
+
+const dur READING_TIME = 500ms;
+const dur POST_SENTENCE_TIME = 1s;
