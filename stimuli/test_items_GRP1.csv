@@ -1,11 +1,8 @@
 ### Test items ###;;;
 id;type;segments;qanswer
-1;FILLER;"Nam/laoreet/dapibus/justo,/ac/lobortis/enim/
-rhoncus/in.";false
-2;FILLER;Curabitur/vel/nulla/laoreet/nibh/volutpat.;true
-3;CORRECT;In/mi/ut/#ipsum/#pellentesque/#dapibus/sed/ut/lorem.;false
-4;CORRECT;"Proin/ac/arcu/in/arcu/#porta/#vestibulum/#quis/ac/
-dolor.";true
-5;GRERROR;"#Cras/#vestibulum/#sapien/#sit/#amet/#lectus/#malesuada/#
-fermentum/#interdum/#quam.";false
-6;GRERROR;#Integer/#ut/#arcu/#lacus,/#luctus/#tempor/#erat.;true
+1;FILLER;"Nam/laoreet/dapibus/#justo!,/ac/lobortis/enim/rhoncus/in.";false
+2;FILLER;"Nam/laoreet/dapibus/#justo!,/ac/lobortis/enim/rhoncus/in.";false
+3;CORRECT;"Nam/laoreet/dapibus/justo,/ac/lobortis/enim/rhoncus/in.";true
+4;CORRECT;"Nam/laoreet/dapibus/justo,/ac/lobortis/enim/rhoncus/in.";true
+5;GRERROR;"Nam/laoreet/dapibus/#justo!,/ac/lobortis/enim/rhoncus/in.";false
+6;GRERROR;"Nam/laoreet/dapibus/#justo!,/ac/lobortis/enim/rhoncus/in.";false

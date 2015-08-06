@@ -176,7 +176,9 @@ Block task
 
                 output.trialnum = test.cycle + 1;
                 output.id = item.id;
+                output.rt = -9999;
                 output.type = item.type;
+                output.qanswer = item.qanswer;
                 output.qcorrect = -1;
             }
 
@@ -211,7 +213,6 @@ Block task
                     choose_1of2_page.set_keys(KEY_Shift_L, KEY_Shift_R);
                     choose_1of2_page.action(this, item.qanswer ? 1 : 2);
                 }
-
 
                 on_event:exit()
                 {
