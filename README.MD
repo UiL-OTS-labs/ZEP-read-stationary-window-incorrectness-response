@@ -14,7 +14,10 @@ screen. So basically the segment window is stationary and the sentence
 moves underneath it segment by segment.
 
 
-Description:
+#Controls
+A buttonbox is recommended for this experiment. However, the alternatvies are:
+Spacebar can be used to detect grammatical errors in the first part of the trial.
+Left and right-shift keys can be used to indiciate a correct or incorrect sentence in the second part of a trial.
         
 
 #Author:
