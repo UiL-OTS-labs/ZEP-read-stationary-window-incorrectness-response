@@ -66,3 +66,5 @@ const string    END_OF_PRACTICE_TEXT =
 // " \u2718 ";      // ballot symbol (cross)
 
 const string QUESTION_TEXT = "  \u2714   ?   \u2718 ";
+
+const string PRACTICE_OVERLAY_PROMT_TEXT = "read sentence word by word";

@@ -197,7 +197,7 @@ Page test_page
 
         // Show or hide prompt.
         test_page_overlay.show_prompt(pr ? 
-            "read sentence word by word" : "");
+            PRACTICE_OVERLAY_PROMT_TEXT : "");
 
         // Enable or disable the progress bar.
         test_page_overlay.show_progress_bar(ntrials);   // disabled if < 0
