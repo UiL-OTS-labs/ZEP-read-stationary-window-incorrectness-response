@@ -2,7 +2,7 @@
 id;type;segments;qanswer
 1;FILLER;"Nam/laoreet/dapibus/#justo!,/ac/lobortis/enim/rhoncus/in.";false
 2;FILLER;"Nam/laoreet/dapibus/#justo!,/ac/lobortis/enim/rhoncus/in.";false
-3;CORRECT;"Nam/laoreet/dapibus/justo,/ac/lobortis/enim/rhoncus/in.";true
-4;CORRECT;"Nam/laoreet/dapibus/justo,/ac/lobortis/enim/rhoncus/in.";true
+3;FILLER;"Nam/laoreet/dapibus/#justo!,/ac/lobortis/enim/rhoncus/in.";false
+4;GRERROR;"Nam/laoreet/dapibus/#justo!,/ac/lobortis/enim/rhoncus/in.";false
 5;GRERROR;"Nam/laoreet/dapibus/#justo!,/ac/lobortis/enim/rhoncus/in.";false
 6;GRERROR;"Nam/laoreet/dapibus/#justo!,/ac/lobortis/enim/rhoncus/in.";false

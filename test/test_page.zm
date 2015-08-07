@@ -75,6 +75,8 @@ Page test_page
         void start_feedback()
         {
             canvas.border = 2;
+            if(feedback_reset.is_running())
+                feedback_reset.abort();
             feedback_reset.start(now() + VISUAL_FEEDBACK_DURATION);
         }
 
@@ -183,6 +185,8 @@ Page test_page
         target = null;
 
         control.clear_status();
+
+
     }
 
 
@@ -221,6 +225,14 @@ Page test_page
         control.target = null;
     }
 
+    Timer clearer {
+
+        on_event:expire()
+        {
+            layout.reset();
+        }
+    }
+
     Timer reader {
         int     slength;        // segments string length
         int     nsegments;      // number of segments in segments string
@@ -239,8 +251,9 @@ Page test_page
                     segment = token(item.segments, "/", segnum);
 
                     time stimonset = layout.start_stimulus(event_time);
-                    start(stimonset+READING_TIME);
-
+                    reader.start(stimonset+READING_TIME+PAUZE_BETWEEN_WORDS);
+                    clearer.start(stimonset+READING_TIME);
+                    
                     if (segment_requires_measurment())
                     {
                         segment = substring(segment, 1, slength-1);
@@ -255,7 +268,7 @@ Page test_page
                     response.ignore_remaining_hits();
                     response.stop(event_time+POST_SENTENCE_TIME);
                     
-                    done(CONTINUE,event_time+POST_SENTENCE_TIME);
+                    done(CONTINUE, event_time+POST_SENTENCE_TIME);
                 }
         }
 
@@ -284,7 +297,6 @@ Page test_page
 
         // Reset response data.
         response.clear();
-
 
         // First 'stimulus' is a fixation symbol. Once that is displayed
         // participant can produce the segments by hitting the response

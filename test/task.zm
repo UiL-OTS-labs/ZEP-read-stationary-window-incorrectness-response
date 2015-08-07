@@ -123,6 +123,11 @@ Block task
             test_output_save();
         }
 
+        void reset_output()
+        {
+            TestOutput temp_output; 
+            output = temp_output;
+        }
 
         Trial trial
         {
@@ -132,14 +137,18 @@ Block task
                 test_page.setup(test.cycle, test.num_cycles, false);
 
                 item = test_items[test.cycle];
-
+                
+                reset_output();
                 output.trialnum = test.cycle + 1;
                 output.id = item.id;
                 output.rt = -9999;
                 output.type = item.type;
                 output.q_expected_answer = item.qanswer;
+                
+                output.num_valid_hits = 0;
+                
                 output.qcorrect = -1;
-                output.num_responses = test_page.response.num_valid_hits;
+                output.segments = item.segments;
             }
 
 
@@ -161,6 +170,7 @@ Block task
                 on_event:exit()
                 {
                     output.rt = test_page.response.rt[1];
+                    output.num_valid_hits = test_page.response.num_valid_hits;
                 }
             }
 
