@@ -43,6 +43,13 @@ const string    END_OF_PRACTICE_TEXT =
                 "\n"
                 "<i>Hit a button when ready to proceed.</i>";
 
+const string    PAUSE_TEXT = 
+                "End of the this part.\n"
+                "\n"
+                "It is time for a small break. "
+                "\n"
+                "<i>Hit a button when ready to proceed.</i>";
+
 //" \u2714 ";      // check mark symbol (V-like)
 // " \u2718 ";      // ballot symbol (cross)
 

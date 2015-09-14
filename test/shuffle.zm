@@ -8,7 +8,7 @@ int shuffle_test_items()
     // before giving up.
     int nattempts;
     bool again = true;
-    while (again && ++nattempts < 100)
+    while (again && ++nattempts < 1000)
     {
         // First shuffle the entire item table.
         again = false;
@@ -26,7 +26,7 @@ int shuffle_test_items()
                 test_items[n].type == test_items[n-2].type &&
                 test_items[n].type == test_items[n-3].type)
             {
-                if (n+1 == nitems || ++nitemswaps == 10)
+                if (n+1 == nitems || ++nitemswaps == 100)
                 {
                     again = true;
                     break;

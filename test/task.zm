@@ -158,7 +158,6 @@ Block task
                 test_output_append(output);
             }
 
-
             SubTrial presentation
             {
                 on_event:entry()
@@ -188,6 +187,26 @@ Block task
                     output.qcorrect = choose_1of2_page.response.correct;
                 }
             }
+
+            SubTrial possible_pause
+            {
+                on_event:entry()
+                {
+                        println(string((test.cycle+1)%2));
+                        println(string(test.cycle));
+                    if( (test.cycle+1) % 50 == 0)
+                    {
+                        pause_page.set_text(
+                            PAUSE_TEXT,
+                            true);
+                        pause_page.action(this);
+                        control.button_box.enable_all_buttons(CONTINUE);
+                    }
+                    else
+                        signal(this, CONTINUE);
+                }
+            }
+            
         }
     }
 
